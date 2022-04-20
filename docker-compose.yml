@@ -19,9 +19,9 @@ services:
     networks:
       - datareservoir-network
       
-  datareservoir-api:
-    image: datareservoir-api
-    command: ["/wait-for-it.sh", "datareservoir-mysql:33306", "-t", "15", "--", "java", "-jar", "api.jar"]
+  datareservoir-all:
+    image: datareservoir-all
+    command: ["/wait-for-it.sh", "datareservoir-mysql:33306", "-t", "15", "--", "java", "-jar", "project.jar"]
     environment:
       DB_HOST: datareservoir-mysql
       SPRING_SESSION_STORE_TYPE: redis
@@ -49,4 +49,4 @@ services:
     networks:
       - datareservoir-network
     depends_on:
-      - datareservoir-api
+      - datareservoir-all

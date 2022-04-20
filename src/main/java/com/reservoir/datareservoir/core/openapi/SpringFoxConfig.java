@@ -1,25 +1,35 @@
 package com.reservoir.datareservoir.core.openapi;
 
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import java.util.Arrays;
+import java.util.List;
+import java.util.function.Consumer;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
 import springfox.bean.validators.configuration.BeanValidatorPluginsConfiguration;
-import springfox.documentation.builders.*;
+import springfox.documentation.builders.ApiInfoBuilder;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RepresentationBuilder;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.builders.ResponseBuilder;
 import springfox.documentation.service.ApiInfo;
+import springfox.documentation.service.AuthorizationScope;
 import springfox.documentation.service.Contact;
+import springfox.documentation.service.HttpAuthenticationScheme;
 import springfox.documentation.service.Response;
+import springfox.documentation.service.SecurityReference;
 import springfox.documentation.service.Tag;
 import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spi.service.contexts.SecurityContext;
 import springfox.documentation.spring.web.json.JacksonModuleRegistrar;
 import springfox.documentation.spring.web.plugins.Docket;
-
-import java.util.Arrays;
-import java.util.List;
-import java.util.function.Consumer;
 
 @Configuration
 @Import(BeanValidatorPluginsConfiguration.class)
@@ -42,11 +52,31 @@ public class SpringFoxConfig {
                 .globalResponses(HttpMethod.GET, globalGetResponseMessages())
                 .globalResponses(HttpMethod.POST, globalPostResponseMessages())
                 .globalResponses(HttpMethod.DELETE, globalDeleteResponseMessages())
+                .securityContexts(Arrays.asList(securityContext()))
+                .securitySchemes(List.of(authenticationScheme()))
+                .securityContexts(List.of(securityContext()))
                 .apiInfo(apiInfo())
                 .tags(new Tag("Cube", "Cube Data Management"),
                         new Tag("Drone","Drone Data Management"),
                         new Tag("Rocket","Rocket Data Management"));
     }
+    
+    
+    private SecurityContext securityContext() {
+    	  return SecurityContext.builder()
+    	        .securityReferences(securityReference()).build();
+    	}
+
+	private List<SecurityReference> securityReference() {
+	  AuthorizationScope authorizationScope = new AuthorizationScope("ADMIN", "Admin access");
+	  AuthorizationScope[] authorizationScopes = new AuthorizationScope[1];
+	  authorizationScopes[0] = authorizationScope;
+	  return List.of(new SecurityReference("Authorization", authorizationScopes));
+	}
+
+	private HttpAuthenticationScheme authenticationScheme() {
+	  return HttpAuthenticationScheme.JWT_BEARER_BUILDER.name("Authorization").build();
+	}
 
     private List<Response> globalGetResponseMessages() {
         return Arrays.asList(

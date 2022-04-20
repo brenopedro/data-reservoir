@@ -168,7 +168,7 @@
 							</execution>
 						</executions>
 						<configuration>
-							<repository>datareservoir-api</repository>
+							<repository>datareservoir-all</repository>
 							<buildArgs>
 								<JAR_FILE>${project.build.finalName}.jar</JAR_FILE>
 							</buildArgs>
