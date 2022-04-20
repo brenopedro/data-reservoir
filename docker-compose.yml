@@ -1,0 +1,52 @@
+version: "3.9"
+
+networks:
+  datareservoir-network:
+    driver: bridge
+    
+services:
+  datareservoir-mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "1234"
+    ports:
+      - "3306:3306"
+    networks:
+      - datareservoir-network
+      
+  datareservoir-redis:
+    image: redis:6.2.1-alpine
+    networks:
+      - datareservoir-network
+      
+  datareservoir-api:
+    image: datareservoir-api
+    command: ["/wait-for-it.sh", "datareservoir-mysql:33306", "-t", "15", "--", "java", "-jar", "api.jar"]
+    environment:
+      DB_HOST: datareservoir-mysql
+      SPRING_SESSION_STORE_TYPE: redis
+      SPRING_REDIS_HOST: datareservoir-redis
+      DATARESERVOIR_RESOURCE_BASE_USERNAME: base-station
+      DATARESERVOIR_RESOURCE_BASE_PASSWORD: base123
+      DATARESERVOIR_RESOURCE_CLIENT_USERNAME: client-station
+      DATARESERVOIR_RESOURCE_CLIENT_PASSWORD: client123
+      DATARESERVOIR_RESOURCE_ADMIN_USERNAME: admin-client
+      DATARESERVOIR_RESOURCE_ADMIN_PASSWORD: admin123
+      DATARESERVOIR_CLIENT_WEB_SERVICE_USERNAME: brenoClient
+      DATARESERVOIR_CLIENT_WEB_SERVICE_PASSWORD: 123
+      DATARESERVOIR_CLIENT_ADMIN_USERNAME: brenoAdmin
+      DATARESERVOIR_CLIENT_ADMIN_PASSWORD: 123
+    networks:
+      - datareservoir-network
+    depends_on:
+      - datareservoir-mysql
+      
+  datareservoir-proxy:
+    build: ./nginx
+    image: datareservoir-proxy
+    ports:
+      - "80:80"
+    networks:
+      - datareservoir-network
+    depends_on:
+      - datareservoir-api
