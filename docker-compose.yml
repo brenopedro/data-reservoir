@@ -23,7 +23,11 @@ services:
     image: datareservoir-all
     command: ["/wait-for-it.sh", "datareservoir-mysql:33306", "-t", "15", "--", "java", "-jar", "project.jar"]
     environment:
+      VIRTUAL_HOST: localhost
+      VIRTUAL_PORT: 8080
       DB_HOST: datareservoir-mysql
+      HOST: localhost:8080
+      LOGGING_LEVEL_ORG_SPRINGFRAMEWORK: DEBUG
       SPRING_SESSION_STORE_TYPE: redis
       SPRING_REDIS_HOST: datareservoir-redis
       DATARESERVOIR_RESOURCE_BASE_USERNAME: base-station
@@ -36,16 +40,26 @@ services:
       DATARESERVOIR_CLIENT_WEB_SERVICE_PASSWORD: 123
       DATARESERVOIR_CLIENT_ADMIN_USERNAME: brenoAdmin
       DATARESERVOIR_CLIENT_ADMIN_PASSWORD: 123
+      DATA_RESERVOIR_SECURITY_USER: breno
+      DATA_RESERVOIR_SECURITY_PASSWORD: $$2a$$04$$ga/m5guarUABgAawe5fS0e5FpCql2lG7.d2Var3qnJm69fNTo6I4y
+      DATARESERVOIR_AUTHORIZATION_AUTH_USERNAME: brenoAdmin
+      DATARESERVOIR_AUTHORIZATION_AUTH_PASSWORD: 123
+      DATARESERVOIR_AUTHORIZATION_AUTH_CLIENT_USERNAME: admin-client
+      DATARESERVOIR_AUTHORIZATION_AUTH_CLIENT_PASSWORD: admin123
+    expose:
+      - "8080"
     networks:
       - datareservoir-network
     depends_on:
       - datareservoir-mysql
       
   datareservoir-proxy:
-    build: ./nginx
-    image: datareservoir-proxy
+    build: nginxproxy/nginx-proxy
+    image: nginxproxy/nginx-proxy
     ports:
       - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
     networks:
       - datareservoir-network
     depends_on:

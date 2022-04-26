@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/rocket/rocketHome::header"></head>
+<body>
+    <div th:replace="/rocket/tabs/altitude/altitude::layout"></div>
+
+    <div class="col" style="margin-left: 5px; margin-top: 5px">
+        <div th:replace="/layout/fragments/FormPropertiesFilter::filter (${propertiesFilter})"></div>
+        <canvas id="chart" class="row-cols-4"></canvas>
+        <button class="row-cols-1 btn btn-primary" type="button" id="button" style="margin-left: 5px">Refresh</button>
+    </div>
+
+    <block th:replace="/home::scripts"></block>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        $('#nav-rocket').addClass('active');
+        $('#altitude').addClass('active');
+        $('#graph').addClass('active');
+    </script>
+    <script th:inline="javascript">
+
+        let rocketData = [[${rocketData}]];
+        let labels = [];
+        let dataSet = [];
+        rocketData.forEach(function (item, index) {
+            labels.push(item.timeStampRocket)
+            dataSet.push(item.altitude)
+        });
+
+
+        const data = {
+            labels: labels,
+            datasets: [{
+                label: 'Altitude',
+                backgroundColor: 'rgb(66, 169, 195)',
+                borderColor: 'rgb(18, 42, 162)',
+                data: dataSet,
+            }]
+        };
+
+        const config = {
+            type: 'line',
+            data: data,
+            options: {}
+        };
+    </script>
+    <script>
+        const myChart = new Chart(
+            document.getElementById('chart'),
+            config
+        );
+    </script>
+</body>
+</html>

@@ -1,5 +1,6 @@
 package com.reservoir.datareservoir.api.v1.exceptionhandler;
 
+import java.net.ConnectException;
 import java.time.OffsetDateTime;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +26,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
@@ -44,6 +46,11 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     private final MessageSource messageSource;
 
+    @ExceptionHandler(ConnectException.class)
+	public ModelAndView handleConnectException(ConnectException e) {
+		return new ModelAndView("/error/connect");
+	}
+    
     /**
      * Get the exception when the url parameter is the wrong type
      * */

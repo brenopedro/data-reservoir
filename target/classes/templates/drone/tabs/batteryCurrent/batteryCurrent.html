@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="drone/droneHome::header"></head>
+<body>
+    <div th:fragment="layout">
+        <div th:replace="layout/fragments/NavBar::navbar"></div>
+        <div th:replace="drone/droneHome::tabs"></div>
+        <div th:replace="layout/fragments/GraphTableTabs::tabs('battery-current/graph', 'battery-current/table')"></div>
+    </div>
+
+    <block th:replace="home::scripts"></block>
+    <script>
+        $('#nav-drone').addClass('active');
+        $('#batteryCurrent').addClass('active');
+    </script>
+</body>
+</html>

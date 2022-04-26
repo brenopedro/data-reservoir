@@ -1,0 +1,152 @@
+{
+  "groups": [
+    {
+      "name": "datareservoir-jwt-keystore",
+      "type": "com.reservoir.datareservoir.core.security.authorizationserver.properties.JwtKeyStoreProperties",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.JwtKeyStoreProperties"
+    },
+    {
+      "name": "datareservoir.authorization",
+      "type": "com.reservoir.datareservoir.client.config.properties.AuthorizationProperties",
+      "sourceType": "com.reservoir.datareservoir.client.config.properties.AuthorizationProperties"
+    },
+    {
+      "name": "datareservoir.client",
+      "type": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ClientProperties",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ClientProperties"
+    },
+    {
+      "name": "datareservoir.resource",
+      "type": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ResourceProperties",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ResourceProperties"
+    },
+    {
+      "name": "datareservoir.security",
+      "type": "com.reservoir.datareservoir.client.config.properties.SecurityProperties",
+      "sourceType": "com.reservoir.datareservoir.client.config.properties.SecurityProperties"
+    },
+    {
+      "name": "datareservoir.url",
+      "type": "com.reservoir.datareservoir.client.domain.service.properties.UrlProperties",
+      "sourceType": "com.reservoir.datareservoir.client.domain.service.properties.UrlProperties"
+    }
+  ],
+  "properties": [
+    {
+      "name": "datareservoir-jwt-keystore.jks-location",
+      "type": "org.springframework.core.io.Resource",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.JwtKeyStoreProperties"
+    },
+    {
+      "name": "datareservoir-jwt-keystore.keypair-alias",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.JwtKeyStoreProperties"
+    },
+    {
+      "name": "datareservoir-jwt-keystore.password",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.JwtKeyStoreProperties"
+    },
+    {
+      "name": "datareservoir.authorization.auth-client-password",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.config.properties.AuthorizationProperties"
+    },
+    {
+      "name": "datareservoir.authorization.auth-client-username",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.config.properties.AuthorizationProperties"
+    },
+    {
+      "name": "datareservoir.authorization.auth-password",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.config.properties.AuthorizationProperties"
+    },
+    {
+      "name": "datareservoir.authorization.auth-username",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.config.properties.AuthorizationProperties"
+    },
+    {
+      "name": "datareservoir.client.admin-password",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ClientProperties"
+    },
+    {
+      "name": "datareservoir.client.admin-username",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ClientProperties"
+    },
+    {
+      "name": "datareservoir.client.web-service-password",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ClientProperties"
+    },
+    {
+      "name": "datareservoir.client.web-service-username",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ClientProperties"
+    },
+    {
+      "name": "datareservoir.resource.admin-password",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ResourceProperties"
+    },
+    {
+      "name": "datareservoir.resource.admin-username",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ResourceProperties"
+    },
+    {
+      "name": "datareservoir.resource.base-password",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ResourceProperties"
+    },
+    {
+      "name": "datareservoir.resource.base-username",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ResourceProperties"
+    },
+    {
+      "name": "datareservoir.resource.client-password",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ResourceProperties"
+    },
+    {
+      "name": "datareservoir.resource.client-username",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.core.security.authorizationserver.properties.ResourceProperties"
+    },
+    {
+      "name": "datareservoir.security.password",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.config.properties.SecurityProperties"
+    },
+    {
+      "name": "datareservoir.security.user",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.config.properties.SecurityProperties"
+    },
+    {
+      "name": "datareservoir.url.authorization-url",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.domain.service.properties.UrlProperties"
+    },
+    {
+      "name": "datareservoir.url.cube-data",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.domain.service.properties.UrlProperties"
+    },
+    {
+      "name": "datareservoir.url.drone-data",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.domain.service.properties.UrlProperties"
+    },
+    {
+      "name": "datareservoir.url.rocket-data",
+      "type": "java.lang.String",
+      "sourceType": "com.reservoir.datareservoir.client.domain.service.properties.UrlProperties"
+    }
+  ],
+  "hints": []
+}

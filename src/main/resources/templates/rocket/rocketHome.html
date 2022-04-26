@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <title>Cube Data</title>
+    <base href="/rocket/"/>
+    <link href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="refresh" content="60">
+</head>
+<body>
+    <div th:replace="/layout/fragments/NavBar::navbar"></div>
+    <div th:fragment="tabs">
+        <ul class="nav nav-tabs">
+        <li class="nav-item">
+                <a href="altitude" class="nav-link" id="altitude">Altitude</a>
+            </li>
+            <li class="nav-item">
+                <a href="external-temperature" class="nav-link" id="externalTemperature">External Temperature</a>
+            </li>
+            <li class="nav-item">
+                <a href="acceleration" class="nav-link" id="acceleration">Acceleration</a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="euler-angle-x" class="nav-link" id="eulerAngleX">Euler Angle X</a>
+            </li>
+            <li class="nav-item">
+                <a href="euler-angle-y" class="nav-link" id="eulerAngleY">Euler Angle Y</a>
+            </li>
+            <li class="nav-item">
+                <a href="euler-angle-z" class="nav-link" id="eulerAngleZ">Euler Angle Z</a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="position-gps-x" class="nav-link" id="positionGpsX">Position GPS X</a>
+            </li>
+            <li class="nav-item">
+                <a href="position-gps-y" class="nav-link" id="positionGpsY">Position GPS Y</a>
+            </li>
+            <li class="nav-item">
+                <a href="position-gps-z" class="nav-link" id="positionGpsZ">Position GPS Z</a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="magnetic-field-x" class="nav-link" id="magneticFieldX">Magnetic Field X</a>
+            </li>
+            <li class="nav-item">
+                <a href="magnetic-field-y" class="nav-link" id="magneticFieldY">Magnetic Field Y</a>
+            </li>
+            <li class="nav-item">
+                <a href="magnetic-field-z" class="nav-link" id="magneticFieldZ">Magnetic Field Z</a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="linear-speed-x" class="nav-link" id="linearSpeedX">Linear Speed X</a>
+            </li>
+            <li class="nav-item">
+                <a href="linear-speed-y" class="nav-link" id="linearSpeedY">Linear Speed Y</a>
+            </li>
+            <li class="nav-item">
+                <a href="linear-speed-z" class="nav-link" id="linearSpeedZ">Linear Speed Z</a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="angular-speed-x" class="nav-link" id="angularSpeedX">Angular Speed X</a>
+            </li>
+            <li class="nav-item">
+                <a href="angular-speed-y" class="nav-link" id="angularSpeedY">Angular Speed Y</a>
+            </li>
+            <li class="nav-item">
+                <a href="angular-speed-z" class="nav-link" id="angularSpeedZ">Angular Speed Z</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col" style="margin-left: 5px; margin-top: 5px">
+        <div th:replace="/layout/fragments/FormPropertiesFilter::filter (${propertiesFilter})"></div>
+        <div class="row-cols-3 table-responsive" style="max-height: 500px; overflow: auto;">
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Altitude</th>
+                    <th>External temperature</th>
+                    <th>Acceleration</th>
+                    <th>Euler angle x</th>
+                    <th>Euler angle y</th>
+                    <th>Euler angle z</th>
+                    <th>Position GPS X</th>
+                    <th>Position GPS Y</th>
+                    <th>Position GPS Z</th>
+                    <th>Magnetic field x</th>
+                    <th>Magnetic field y</th>
+                    <th>Magnetic field z</th>
+                    <th>Linear speed x</th>
+                    <th>Linear speed y</th>
+                    <th>Linear speed z</th>
+                    <th>Angular speed x</th>
+                    <th>Angular speed y</th>
+                    <th>Angular speed z</th>
+                    <th>Time stamp rocket</th>
+                    <th>Time stamp base</th>
+                </tr>
+                </thead>
+                <tr th:each="rocketData: ${rocketData}">
+                    <th scope="row" th:text="${rocketData.id}">Id</th>
+                    <th th:text="${rocketData.altitude}">Altitude</th>
+                    <th th:text="${rocketData.externalTemperature}">External temperature</th>
+                    <th th:text="${rocketData.acceleration}">Acceleration</th>
+                    <th th:text="${rocketData.eulerAngleX}">Euler angle x</th>
+                    <th th:text="${rocketData.eulerAngleY}">Euler angle y</th>
+                    <th th:text="${rocketData.eulerAngleZ}">Euler angle z</th>
+                    <th th:text="${rocketData.positionGpsX}">Position GPS X</th>
+                    <th th:text="${rocketData.positionGpsY}">Position GPS Y</th>
+                    <th th:text="${rocketData.positionGpsZ}">Position GPS Z</th>
+                    <th th:text="${rocketData.magneticFieldX}">Magnetic field x</th>
+                    <th th:text="${rocketData.magneticFieldY}">Magnetic field y</th>
+                    <th th:text="${rocketData.magneticFieldZ}">Magnetic field z</th>
+                    <th th:text="${rocketData.linearSpeedX}">Linear speed x</th>
+                    <th th:text="${rocketData.linearSpeedY}">Linear speed y</th>
+                    <th th:text="${rocketData.linearSpeedZ}">Linear speed z</th>
+                    <th th:text="${rocketData.angularSpeedX}">Angular speed x</th>
+                    <th th:text="${rocketData.angularSpeedY}">Angular speed y</th>
+                    <th th:text="${rocketData.angularSpeedZ}">Angular speed z</th>
+                    <th th:text="${rocketData.timeStampRocket}">Time stamp rocket</th>
+                    <th th:text="${rocketData.timeStampBase}">Time stamp base</th>
+                </tr>
+            </table>
+        </div>
+        <button class="row-cols-1 btn btn-primary" type="button" id="button">Refresh</button>
+        <a class="row-cols-1 btn btn-primary" href="download" id="buttonCsv">Download CSV file</a>
+    </div>
+
+    <block th:replace="/home::scripts"></block>
+    <script>
+        $('#nav-rocket').addClass('active');
+    </script>
+</body>
+</html>

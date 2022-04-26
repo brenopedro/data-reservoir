@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/rocket/rocketHome::header"></head>
+<body>
+    <div th:replace="/rocket/tabs/angularSpeedX/angularSpeedX::layout"></div>
+
+    <div class="col" style="margin-left: 5px; margin-top: 5px">
+        <div th:replace="/layout/fragments/FormPropertiesFilter::filter (${propertiesFilter})"></div>
+        <div class="row-cols-4 table-responsive" style="overflow:auto; max-height: 500px">
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Angular Speed X</th>
+                    <th>Time stamp rocket</th>
+                    <th>Time stamp base</th>
+                </tr>
+                </thead>
+                <tr th:each="rocketData: ${rocketData}">
+                    <th th:text="${rocketData.id}">Id</th>
+                    <th th:text="${rocketData.angularSpeedX}">Angular Speed X</th>
+                    <th th:text="${rocketData.timeStampRocket}">Time stamp rocket</th>
+                    <th th:text="${rocketData.timeStampBase}">Time stamp base</th>
+                </tr>
+            </table>
+        </div>
+        <button class="row-cols-1 btn btn-primary" type="button" id="button">Refresh</button>
+    </div>
+
+    <block th:replace="/home::scripts"></block>
+    <script>
+        $('#nav-rocket').addClass('active');
+        $('#angularSpeedX').addClass('active');
+        $('#table').addClass('active');
+    </script>
+</body>
+</html>

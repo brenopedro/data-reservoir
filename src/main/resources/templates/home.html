@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Reservoir Client</title>
+    <link href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+
+    <div th:replace="layout/fragments/NavBar::navbar"></div>
+
+	<div class="col" style="margin-left: 5px; margin-top: 5px">
+		<div th:replace="layout/fragments/FormPropertiesFilter::filter (${propertiesFilter})"></div>
+    	<div align="center" class="row-cols-1"><h2>Cube data</h2></div>
+
+	    <div class="row-cols-1 table-responsive" style="overflow:auto; max-height: 500px">
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>External temperature</th>
+                        <th>Battery current</th>
+                        <th>Battery voltage</th>
+                        <th>Battery temperature</th>
+                        <th>Magnetic field x</th>
+                        <th>Magnetic field y</th>
+                        <th>Magnetic field z</th>
+                        <th>Euler angle x</th>
+                        <th>Euler angle y</th>
+                        <th>Euler angle z</th>
+                        <th>Linear speed x</th>
+                        <th>Linear speed y</th>
+                        <th>Linear speed z</th>
+                        <th>Angular speed x</th>
+                        <th>Angular speed y</th>
+                        <th>Angular speed z</th>
+                        <th>Transmitted transceiver power</th>
+                        <th>Received transceiver power</th>
+                        <th>Time stamp cube</th>
+                        <th>Time stamp base</th>
+                    </tr>
+                </thead>
+                <tr th:each="cubeData: ${cubeData}">
+                    <th scope="row" th:text="${cubeData.id}">Id</th>
+                    <th th:text="${cubeData.externalTemperature}">External temperature</th>
+                    <th th:text="${cubeData.batteryCurrent}">Battery current</th>
+                    <th th:text="${cubeData.batteryVoltage}">Battery voltage</th>
+                    <th th:text="${cubeData.batteryTemperature}">Battery temperature</th>
+                    <th th:text="${cubeData.magneticFieldX}">Magnetic field x</th>
+                    <th th:text="${cubeData.magneticFieldY}">Magnetic field y</th>
+                    <th th:text="${cubeData.magneticFieldZ}">Magnetic field z</th>
+                    <th th:text="${cubeData.eulerAngleX}">Euler angle x</th>
+                    <th th:text="${cubeData.eulerAngleY}">Euler angle y</th>
+                    <th th:text="${cubeData.eulerAngleZ}">Euler angle z</th>
+                    <th th:text="${cubeData.linearSpeedX}">Linear speed x</th>
+                    <th th:text="${cubeData.linearSpeedY}">Linear speed y</th>
+                    <th th:text="${cubeData.linearSpeedZ}">Linear speed z</th>
+                    <th th:text="${cubeData.angularSpeedX}">Angular speed x</th>
+                    <th th:text="${cubeData.angularSpeedY}">Angular speed y</th>
+                    <th th:text="${cubeData.angularSpeedZ}">Angular speed z</th>
+                    <th th:text="${cubeData.transmittedTransceiverPower}">Transmitted transceiver power</th>
+                    <th th:text="${cubeData.receivedTransceiverPower}">Received transceiver power</th>
+                    <th th:text="${cubeData.timeStampCube}">Time stamp cube</th>
+                    <th th:text="${cubeData.timeStampBase}">Time stamp base</th>
+                </tr>
+            </table>
+	    </div>
+	
+	    <div align="center" class="row-cols-1"><h2>Drone data</h2></div>
+	
+	    <div class="row-cols-1 table-responsive" style="overflow:auto; max-height: 500px">
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Altitude</th>
+                    <th>Battery current</th>
+                    <th>Battery voltage</th>
+                    <th>Position GPS X</th>
+                    <th>Position GPS Y</th>
+                    <th>Position GPS Z</th>
+                    <th>Time stamp cube</th>
+                    <th>Time stamp base</th>
+                </tr>
+                </thead>
+                <tr th:each="droneData: ${droneData}">
+                    <th scope="row" th:text="${droneData.id}">Id</th>
+                    <th th:text="${droneData.altitude}">External temperature</th>
+                    <th th:text="${droneData.batteryCurrent}">Battery current</th>
+                    <th th:text="${droneData.batteryVoltage}">Battery voltage</th>
+                    <th th:text="${droneData.positionGpsX}">Magnetic field x</th>
+                    <th th:text="${droneData.positionGpsY}">Magnetic field y</th>
+                    <th th:text="${droneData.positionGpsZ}">Magnetic field z</th>
+                    <th th:text="${droneData.timeStampDrone}">Time stamp drone</th>
+                    <th th:text="${droneData.timeStampBase}">Time stamp base</th>
+                </tr>
+            </table>
+	    </div>
+	
+	    <div align="center" class="row-cols-1"><h2>Rocket data</h2></div>
+	
+	    <div class="row-cols-1 table-responsive" style="overflow:auto; max-height: 500px">
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Altitude</th>
+                    <th>External temperature</th>
+                    <th>Acceleration</th>
+                    <th>Euler angle X</th>
+                    <th>Euler angle Y</th>
+                    <th>Euler angle Z</th>
+                    <th>Position GPS X</th>
+                    <th>Position GPS Y</th>
+                    <th>Position GPS Z</th>
+                    <th>Magnetic filed X</th>
+                    <th>Magnetic filed Y</th>
+                    <th>Magnetic filed Z</th>
+                    <th>Linear speed X</th>
+                    <th>Linear speed Y</th>
+                    <th>Linear speed Z</th>
+                    <th>Angular speed X</th>
+                    <th>Angular speed Y</th>
+                    <th>Angular speed Z</th>
+                    <th>Time stamp rocket</th>
+                    <th>Time stamp base</th>
+                </tr>
+                </thead>
+                <tr th:each="rocketData: ${rocketData}">
+                    <th scope="row" th:text="${rocketData.id}">Id</th>
+                    <th th:text="${rocketData.altitude}">Altitude</th>
+                    <th th:text="${rocketData.externalTemperature}">External temperature</th>
+                    <th th:text="${rocketData.acceleration}">Acceleration</th>
+                    <th th:text="${rocketData.eulerAngleX}">Euler angle X</th>
+                    <th th:text="${rocketData.eulerAngleY}">Euler angle Y</th>
+                    <th th:text="${rocketData.eulerAngleZ}">Euler angle Z</th>
+                    <th th:text="${rocketData.positionGpsX}">Position GPS X</th>
+                    <th th:text="${rocketData.positionGpsY}">Position GPS Y</th>
+                    <th th:text="${rocketData.positionGpsZ}">Position GPS Z</th>
+                    <th th:text="${rocketData.magneticFieldX}">Magnetic filed X</th>
+                    <th th:text="${rocketData.magneticFieldY}">Magnetic filed Y</th>
+                    <th th:text="${rocketData.magneticFieldZ}">Magnetic filed Z</th>
+                    <th th:text="${rocketData.linearSpeedX}">Linear speed X</th>
+                    <th th:text="${rocketData.linearSpeedY}">Linear speed Y</th>
+                    <th th:text="${rocketData.linearSpeedZ}">Linear speed Z</th>
+                    <th th:text="${rocketData.angularSpeedX}">Angular speed X</th>
+                    <th th:text="${rocketData.angularSpeedY}">Angular speed Y</th>
+                    <th th:text="${rocketData.angularSpeedZ}">Angular speed Z</th>
+                    <th th:text="${rocketData.timeStampRocket}">Time stamp rocket</th>
+                    <th th:text="${rocketData.timeStampBase}">Time stamp base</th>
+                </tr>
+            </table>
+        </div>
+        <button class="row-cols-1 btn btn-primary" type="button" id="button" style="margin-left: 5px">Refresh</button>
+    </div>
+
+    <block th:fragment="scripts">
+        <script src="/webjars/jquery/3.6.0/jquery.min.js"></script>
+        <script src="/webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
+        <script th:src="@{/js/scripts.js}"></script>
+    </block>
+</body>
+</html>

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/rocket/rocketHome::header"></head>
+<body>
+    <div th:fragment="layout">
+        <div th:replace="/layout/fragments/NavBar::navbar"></div>
+        <div th:replace="/rocket/rocketHome::tabs"></div>
+        <div th:replace="/layout/fragments/GraphTableTabs::tabs('angular-speed-x/graph', 'angular-speed-x/table')"></div>
+    </div>
+
+    <block th:replace="/home::scripts"></block>
+    <script>
+        $('#nav-rocket').addClass('active');
+        $('#angularSpeedX').addClass('active');
+    </script>
+</body>
+</html>

@@ -24,7 +24,7 @@ import com.reservoir.datareservoir.api.v1.openapi.CubeDataControllerOpenApi;
 import com.reservoir.datareservoir.core.security.ReservoirSecurity;
 import com.reservoir.datareservoir.domain.filter.PropertiesFilter;
 import com.reservoir.datareservoir.domain.model.CubeData;
-import com.reservoir.datareservoir.domain.service.CubeDataService;
+import com.reservoir.datareservoir.domain.service.CubeDataServiceApi;
 
 import lombok.AllArgsConstructor;
 
@@ -33,7 +33,7 @@ import lombok.AllArgsConstructor;
 @RequestMapping(path = "/v1/cube-data")
 public class CubeDataController implements CubeDataControllerOpenApi {
 
-    private final CubeDataService cubeDataService;
+    private final CubeDataServiceApi cubeDataService;
     private final CubeDataModelAssembler cubeDataModelAssembler;
     private final CubeDataDisassembler cubeDataDisassembler;
     private final ReservoirSecurity reservoirSecurity;

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+    <meta charset="UTF-8">
+    <title>Cube Data</title>
+    <base href="/drone/"/>
+    <link href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <meta http-equiv="refresh" content="60">
+</head>
+<body>
+    <div th:replace="layout/fragments/NavBar::navbar"></div>
+    <div th:fragment="tabs">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a href="altitude" class="nav-link" id="altitude">Altitude</a>
+            </li>
+
+            <li class="nav-item">
+                <a href="battery-current" class="nav-link" id="batteryCurrent">Battery Current</a>
+            </li>
+            <li class="nav-item">
+                <a href="battery-voltage" class="nav-link" id="batteryVoltage">Battery Voltage</a>
+            </li>
+            
+            <li class="nav-item">
+                <a href="position-gps-x" class="nav-link" id="positionGpsX">Position GPS X</a>
+            </li>
+            <li class="nav-item">
+                <a href="position-gps-y" class="nav-link" id="positionGpsY">Position GPS Y</a>
+            </li>
+            <li class="nav-item">
+                <a href="position-gps-z" class="nav-link" id="positionGpsZ">Position GPS Z</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="col" style="margin-left: 5px; margin-top: 5px">
+        <div th:replace="layout/fragments/FormPropertiesFilter::filter (${propertiesFilter})"></div>
+        <div class="row-cols-3 table-responsive" style="max-height: 500px; overflow: auto;">
+            <table class="table table-sm table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Altitude</th>
+                    <th>Battery current</th>
+                    <th>Battery voltage</th>
+                    <th>Position GPS X</th>
+                    <th>Position GPS Y</th>
+                    <th>Position GPS Z</th>
+                    <th>Time stamp drone</th>
+                    <th>Time stamp base</th>
+                </tr>
+                </thead>
+                <tr th:each="droneData: ${droneData}">
+                    <th scope="row" th:text="${droneData.id}">Id</th>
+                    <th th:text="${droneData.altitude}">Altitude</th>
+                    <th th:text="${droneData.batteryCurrent}">Battery current</th>
+                    <th th:text="${droneData.batteryVoltage}">Battery voltage</th>
+                    <th th:text="${droneData.positionGpsX}">Position GPS X</th>
+                    <th th:text="${droneData.positionGpsY}">Position GPS Y</th>
+                    <th th:text="${droneData.positionGpsZ}">Position GPS Z</th>
+                    <th th:text="${droneData.timeStampDrone}">Time stamp drone</th>
+                    <th th:text="${droneData.timeStampBase}">Time stamp base</th>
+                </tr>
+            </table>
+        </div>
+        <button class="row-cols-1 btn btn-primary" type="button" id="button">Refresh</button>
+        <a class="row-cols-1 btn btn-primary" href="download" id="buttonCsv">Download CSV file</a>
+    </div>
+
+    <block th:replace="home::scripts"></block>
+    <script>
+        $('#nav-drone').addClass('active');
+    </script>
+</body>
+</html>

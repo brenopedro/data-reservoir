@@ -1,5 +1,21 @@
 package com.reservoir.datareservoir.api.v1.controller;
 
+import java.util.List;
+
+import javax.validation.Valid;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.security.access.AccessDeniedException;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
+
 import com.reservoir.datareservoir.api.v1.assembler.DroneDataDisassembler;
 import com.reservoir.datareservoir.api.v1.assembler.DroneDataModelAssembler;
 import com.reservoir.datareservoir.api.v1.model.DroneDataModel;
@@ -8,22 +24,16 @@ import com.reservoir.datareservoir.api.v1.openapi.DroneDataControllerOpenApi;
 import com.reservoir.datareservoir.core.security.ReservoirSecurity;
 import com.reservoir.datareservoir.domain.filter.PropertiesFilter;
 import com.reservoir.datareservoir.domain.model.DroneData;
-import com.reservoir.datareservoir.domain.service.DroneDataService;
-import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.security.access.AccessDeniedException;
-import org.springframework.web.bind.annotation.*;
+import com.reservoir.datareservoir.domain.service.DroneDataServiceApi;
 
-import javax.validation.Valid;
-import java.util.List;
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
 @RequestMapping(path = "/v1/drone-data")
 public class DroneDataController implements DroneDataControllerOpenApi {
 
-    private final DroneDataService droneDataService;
+    private final DroneDataServiceApi droneDataService;
     private final DroneDataModelAssembler droneDataModelAssembler;
     private final DroneDataDisassembler droneDataDisassembler;
     private final ReservoirSecurity reservoirSecurity;

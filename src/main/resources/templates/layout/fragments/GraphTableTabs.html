@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <div th:fragment="tabs (graphLink, tableLink)">
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a th:href="${graphLink}" class="nav-link" id="graph">Graph</a>
+            </li>
+            <li>
+                <a th:href="${tableLink}" class="nav-link" id="table">Table</a>
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
