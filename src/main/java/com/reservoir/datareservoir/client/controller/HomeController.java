@@ -43,7 +43,13 @@ public class HomeController {
     }
 
     @GetMapping("error")
-    public ModelAndView handleError() {
+    public ModelAndView handleErrorGet() {
+        ModelAndView modelAndView = new ModelAndView("error/error");
+        return modelAndView;
+    }
+    
+    @PostMapping("error")
+    public ModelAndView handleErrorPost() {
         ModelAndView modelAndView = new ModelAndView("error/error");
         return modelAndView;
     }
