@@ -1,7 +1,8 @@
 package com.reservoir.datareservoir.api.v1.assembler;
 
+import com.reservoir.datareservoir.api.v1.domain.model.CubeData;
 import com.reservoir.datareservoir.api.v1.model.input.CubeDataInput;
-import com.reservoir.datareservoir.domain.model.CubeData;
+
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

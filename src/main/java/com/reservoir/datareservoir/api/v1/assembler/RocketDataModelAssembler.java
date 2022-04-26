@@ -1,7 +1,8 @@
 package com.reservoir.datareservoir.api.v1.assembler;
 
+import com.reservoir.datareservoir.api.v1.domain.model.RocketData;
 import com.reservoir.datareservoir.api.v1.model.RocketDataModel;
-import com.reservoir.datareservoir.domain.model.RocketData;
+
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;

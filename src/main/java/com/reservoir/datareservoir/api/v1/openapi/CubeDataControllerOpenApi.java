@@ -3,10 +3,10 @@ package com.reservoir.datareservoir.api.v1.openapi;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 
+import com.reservoir.datareservoir.api.v1.domain.filter.PropertiesFilter;
 import com.reservoir.datareservoir.api.v1.exceptionhandler.Problem;
 import com.reservoir.datareservoir.api.v1.model.CubeDataModel;
 import com.reservoir.datareservoir.api.v1.model.input.CubeDataInput;
-import com.reservoir.datareservoir.domain.filter.PropertiesFilter;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

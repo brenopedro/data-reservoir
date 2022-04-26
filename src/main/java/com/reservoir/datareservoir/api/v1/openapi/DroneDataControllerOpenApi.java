@@ -1,9 +1,10 @@
 package com.reservoir.datareservoir.api.v1.openapi;
 
+import com.reservoir.datareservoir.api.v1.domain.filter.PropertiesFilter;
 import com.reservoir.datareservoir.api.v1.exceptionhandler.Problem;
 import com.reservoir.datareservoir.api.v1.model.DroneDataModel;
 import com.reservoir.datareservoir.api.v1.model.input.DroneDataInput;
-import com.reservoir.datareservoir.domain.filter.PropertiesFilter;
+
 import io.swagger.annotations.*;
 
 import java.util.List;

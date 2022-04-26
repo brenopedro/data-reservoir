@@ -18,13 +18,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.reservoir.datareservoir.api.v1.assembler.CubeDataDisassembler;
 import com.reservoir.datareservoir.api.v1.assembler.CubeDataModelAssembler;
+import com.reservoir.datareservoir.api.v1.domain.filter.PropertiesFilter;
+import com.reservoir.datareservoir.api.v1.domain.model.CubeData;
+import com.reservoir.datareservoir.api.v1.domain.service.CubeDataServiceApi;
 import com.reservoir.datareservoir.api.v1.model.CubeDataModel;
 import com.reservoir.datareservoir.api.v1.model.input.CubeDataInput;
 import com.reservoir.datareservoir.api.v1.openapi.CubeDataControllerOpenApi;
 import com.reservoir.datareservoir.core.security.ReservoirSecurity;
-import com.reservoir.datareservoir.domain.filter.PropertiesFilter;
-import com.reservoir.datareservoir.domain.model.CubeData;
-import com.reservoir.datareservoir.domain.service.CubeDataServiceApi;
 
 import lombok.AllArgsConstructor;
 

@@ -8,7 +8,7 @@
     <meta http-equiv="refresh" content="60">
 </head>
 <body>
-    <div th:replace="/layout/fragments/NavBar::navbar"></div>
+    <div th:replace="layout/fragments/NavBar::navbar"></div>
     <div th:fragment="tabs">
         <ul class="nav nav-tabs">
         <li class="nav-item">
@@ -74,7 +74,7 @@
     </div>
 
     <div class="col" style="margin-left: 5px; margin-top: 5px">
-        <div th:replace="/layout/fragments/FormPropertiesFilter::filter (${propertiesFilter})"></div>
+        <div th:replace="layout/fragments/FormPropertiesFilter::filter (${propertiesFilter})"></div>
         <div class="row-cols-3 table-responsive" style="max-height: 500px; overflow: auto;">
             <table class="table table-sm table-striped table-bordered">
                 <thead>
@@ -131,7 +131,7 @@
         <a class="row-cols-1 btn btn-primary" href="download" id="buttonCsv">Download CSV file</a>
     </div>
 
-    <block th:replace="/home::scripts"></block>
+    <block th:replace="home::scripts"></block>
     <script>
         $('#nav-rocket').addClass('active');
     </script>
