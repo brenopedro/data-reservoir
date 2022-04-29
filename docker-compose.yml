@@ -27,6 +27,7 @@ services:
       VIRTUAL_PORT: 8080
       DB_HOST: datareservoir-mysql
       HOST: localhost:8080
+      SPRING_PROFILES_ACTIVE: development
       LOGGING_LEVEL_ORG_SPRINGFRAMEWORK: DEBUG
       SPRING_SESSION_STORE_TYPE: redis
       SPRING_REDIS_HOST: datareservoir-redis
