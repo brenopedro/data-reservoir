@@ -8,6 +8,7 @@ com\reservoir\datareservoir\core\security\ReservoirSecurity.class
 com\reservoir\datareservoir\client\controller\rocket\RocketMagneticFieldZController.class
 com\reservoir\datareservoir\core\security\authorizationserver\properties\ClientProperties.class
 com\reservoir\datareservoir\api\v1\exceptionhandler\Problem$ProblemBuilder.class
+com\reservoir\datareservoir\core\io\Base64ProtocolResolver.class
 com\reservoir\datareservoir\client\controller\rocket\RocketAngularSpeedXController.class
 com\reservoir\datareservoir\core\security\authorizationserver\properties\ResourceProperties.class
 com\reservoir\datareservoir\api\v1\openapi\DroneDataControllerOpenApi.class

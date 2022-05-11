@@ -65,6 +65,7 @@ C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\data
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\core\security\authorizationserver\AuthorizationServerConfig.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\infrastructure\util\FilterUtil.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\domain\model\PropertiesFilter.java
+C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\core\io\Base64ProtocolResolver.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\domain\service\DroneDataServiceClient.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\openapi\DroneDataControllerOpenApi.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\domain\service\properties\UrlProperties.java

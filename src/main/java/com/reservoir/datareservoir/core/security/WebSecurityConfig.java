@@ -56,7 +56,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.inMemoryAuthentication()
-                    .withUser(clientProperties.getWebServicePassword())
+                    .withUser(clientProperties.getWebServiceUsername())
                     .password(passwordEncoder().encode(clientProperties.getWebServicePassword()))
                     .authorities("base-station")
                 .and()
