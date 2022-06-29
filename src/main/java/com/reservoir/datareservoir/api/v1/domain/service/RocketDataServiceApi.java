@@ -1,22 +1,25 @@
 package com.reservoir.datareservoir.api.v1.domain.service;
 
-import com.reservoir.datareservoir.api.v1.domain.exception.RocketNotFoundException;
-import com.reservoir.datareservoir.api.v1.domain.filter.PropertiesFilter;
-import com.reservoir.datareservoir.api.v1.domain.model.RocketData;
-import com.reservoir.datareservoir.api.v1.domain.repository.RocketDataRepository;
-import com.reservoir.datareservoir.api.v1.infrastructure.util.FilterUtil;
-import com.reservoir.datareservoir.core.security.ReservoirSecurity;
+import java.time.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 
-import lombok.AllArgsConstructor;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
+import com.reservoir.datareservoir.api.v1.domain.exception.RocketNotFoundException;
+import com.reservoir.datareservoir.api.v1.domain.filter.PropertiesFilter;
+import com.reservoir.datareservoir.api.v1.domain.model.RocketData;
+import com.reservoir.datareservoir.api.v1.domain.repository.RocketDataRepository;
+import com.reservoir.datareservoir.api.v1.infrastructure.util.FilterRocketUtil;
+import com.reservoir.datareservoir.api.v1.infrastructure.util.FilterUtil;
+import com.reservoir.datareservoir.core.security.ReservoirSecurity;
+
+import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
@@ -44,6 +47,18 @@ public class RocketDataServiceApi {
         }
         return rocketData;
     }
+    
+    public OffsetDateTime getLastModifiedDate(PropertiesFilter propertiesFilter,
+			Collection<? extends GrantedAuthority> authorities) {
+    	OffsetDateTime[] dateTime = new OffsetDateTime[1];
+    	dateTime[0] = null;
+        authorities.forEach(grantedAuthority -> {
+            if (ReservoirSecurity.isGrantAuthorityValid(grantedAuthority.getAuthority())) {
+                dateTime[0] = FilterRocketUtil.checkFilterAndGet(propertiesFilter, grantedAuthority.getAuthority(), rocketDataRepository);
+            }
+        });
+        return dateTime[0];
+	}
 
     @Transactional
     public void save(RocketData rocketData) {

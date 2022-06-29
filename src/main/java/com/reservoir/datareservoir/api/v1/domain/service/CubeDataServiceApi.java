@@ -4,6 +4,7 @@ import com.reservoir.datareservoir.api.v1.domain.exception.CubeNotFoundException
 import com.reservoir.datareservoir.api.v1.domain.filter.PropertiesFilter;
 import com.reservoir.datareservoir.api.v1.domain.model.CubeData;
 import com.reservoir.datareservoir.api.v1.domain.repository.CubeDataRepository;
+import com.reservoir.datareservoir.api.v1.infrastructure.util.FilterCubeUtil;
 import com.reservoir.datareservoir.api.v1.infrastructure.util.FilterUtil;
 import com.reservoir.datareservoir.core.security.ReservoirSecurity;
 
@@ -14,6 +15,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -44,6 +46,19 @@ public class CubeDataServiceApi {
         }
         return cubeData;
     }
+    
+    public OffsetDateTime getLastModifiedDate(PropertiesFilter propertiesFilter,
+			Collection<? extends GrantedAuthority> authorities) {
+    	OffsetDateTime[] dateTime = new OffsetDateTime[1];
+    	dateTime[0] = null;
+        authorities.forEach(grantedAuthority -> {
+            if (ReservoirSecurity.isGrantAuthorityValid(grantedAuthority.getAuthority())) {
+                dateTime[0] = FilterCubeUtil.checkFilterAndGet(propertiesFilter, grantedAuthority.getAuthority(), cubeDataRepository);
+            }
+        });
+        return dateTime[0];
+	}
+
 
     @Transactional
     public void save(CubeData cubeData) {
@@ -77,4 +92,5 @@ public class CubeDataServiceApi {
         return cubeData;
     }
 
+	
 }

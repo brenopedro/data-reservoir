@@ -1,6 +1,9 @@
+C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\infrastructure\util\FilterCubeUtil.java
+C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\infrastructure\util\FilterRocketUtil.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketPositionGpsZController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\cube\CubeMagneticFieldYController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\controller\RocketDataController.java
+C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\infrastructure\util\DroneServiceCacheUtil.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\domain\repository\CubeDataRepository.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\domain\service\RocketDataServiceApi.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\model\DroneDataModel.java
@@ -14,6 +17,7 @@ C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\data
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\core\security\ReservoirSecurity.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\cube\CubeBatteryVoltageController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\domain\filter\PropertiesFilter.java
+C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\infrastructure\util\FilterDroneUtil.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketAngularSpeedXController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\cube\CubeEulerAngleXController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\assembler\CubeDataModelAssembler.java
@@ -71,11 +75,13 @@ C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\data
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\domain\service\properties\UrlProperties.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketPositionGpsXController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\core\security\authorizationserver\properties\ClientProperties.java
+C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\infrastructure\util\RocketServiceCacheUtil.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\infrastructure\repository\spec\FilterSpecs.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketEulerAngleYController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\openapi\CubeDataControllerOpenApi.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\domain\exception\RocketNotFoundException.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketLinearSpeedZController.java
+C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\core\web\WebMvcConfig.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketMagneticFieldZController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\cube\CubeMagneticFieldXController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketEulerAngleXController.java
@@ -102,6 +108,7 @@ C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\data
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketEulerAngleZController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\drone\DroneBatteryVoltageController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\api\v1\exceptionhandler\Problem.java
+C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\infrastructure\util\CubeServiceCacheUtil.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketAngularSpeedZController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\drone\DronePositionGpsXController.java
 C:\Users\breno\eclipse-workspace\data-reservoir\src\main\java\com\reservoir\datareservoir\client\controller\rocket\RocketAccelerationController.java

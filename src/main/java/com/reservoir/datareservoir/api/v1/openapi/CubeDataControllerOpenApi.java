@@ -3,6 +3,9 @@ package com.reservoir.datareservoir.api.v1.openapi;
 import java.nio.file.AccessDeniedException;
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.context.request.ServletWebRequest;
+
 import com.reservoir.datareservoir.api.v1.domain.filter.PropertiesFilter;
 import com.reservoir.datareservoir.api.v1.exceptionhandler.Problem;
 import com.reservoir.datareservoir.api.v1.model.CubeDataModel;
@@ -13,6 +16,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import springfox.documentation.annotations.ApiIgnore;
 
 @Api(tags = "Cube")
 public interface CubeDataControllerOpenApi {
@@ -22,7 +26,7 @@ public interface CubeDataControllerOpenApi {
             @ApiResponse(code = 400, message = "Invalid request", response = Problem.class),
             @ApiResponse(code = 500, message = "Internal server error", response = Problem.class)
     })
-    List<CubeDataModel> getCubeData(PropertiesFilter propertiesFilter);
+    ResponseEntity<List<CubeDataModel>> getCubeData(PropertiesFilter propertiesFilter, @ApiIgnore ServletWebRequest request);
 
     @ApiOperation("Get a single cube data")
     @ApiResponses({

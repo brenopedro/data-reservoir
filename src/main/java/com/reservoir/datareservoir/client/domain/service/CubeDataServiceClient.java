@@ -1,7 +1,6 @@
 package com.reservoir.datareservoir.client.domain.service;
 
 import java.io.IOException;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,8 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
-import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -21,6 +21,7 @@ import com.reservoir.datareservoir.client.config.auth.AuthorizationToken;
 import com.reservoir.datareservoir.client.domain.model.CubeData;
 import com.reservoir.datareservoir.client.domain.model.PropertiesFilter;
 import com.reservoir.datareservoir.client.domain.service.properties.UrlProperties;
+import com.reservoir.datareservoir.client.infrastructure.util.CubeServiceCacheUtil;
 
 @Component
 public class CubeDataServiceClient {
@@ -31,10 +32,15 @@ public class CubeDataServiceClient {
 	@Autowired
 	private UrlProperties urlProperties;
 	
+	@Autowired
+	private CubeServiceCacheUtil cubeServiceCacheUtil;
+	
+	private String etag = null;
+	private CubeData[] cubeData;
+	
     public CubeData[] getCubeData(PropertiesFilter propertiesFilter) {
         String accessToken = authorizationToken.getAccessToken(false);
-        CubeData[] cubeData;
-
+        
         Map<String, String> params = new HashMap<>();
         params.put("fromTimeStamp", propertiesFilter.getFromTimeStamp());
         params.put("toTimeStamp", propertiesFilter.getToTimeStamp());
@@ -47,28 +53,23 @@ public class CubeDataServiceClient {
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
         headers.setBearerAuth(accessToken);
+        headers.setETag(etag);
+        headers.setIfNoneMatch(etag);
         
-        RestTemplate restTemplate = new RestTemplate(); 
-        
-//        MappingJackson2HttpMessageConverter mappingJackson2HttpMessageConverter = new MappingJackson2HttpMessageConverter();
-//        mappingJackson2HttpMessageConverter.setSupportedMediaTypes(Arrays.asList(MediaType.APPLICATION_JSON));
-//        restTemplate.getMessageConverters().add(mappingJackson2HttpMessageConverter);
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<CubeData[]> responseEntity = null;
         
         try {
-            var request = new HttpEntity(headers);
-      
-            cubeData = restTemplate.exchange(uri, HttpMethod.GET,
-                            request, CubeData[].class, params).getBody();
+        	var request = new HttpEntity(headers);
+        	cubeData = getBody(restTemplate, uri, request, params);
         } catch (HttpClientErrorException e) {
             accessToken = authorizationToken.getAccessToken(true);
             headers.setBearerAuth(accessToken);
             
             var request = new HttpEntity(headers);
 
-            cubeData = restTemplate.exchange(uri, HttpMethod.GET,
-                    request, CubeData[].class, params).getBody();
+            cubeData = getBody(restTemplate, uri, request, params);
         }
-
 
         return cubeData;
     }
@@ -96,5 +97,21 @@ public class CubeDataServiceClient {
 			csvBeanWriter.write(cubeData, fieldMapping);
 		}
 
+	}
+	
+	private CubeData[] getBody (RestTemplate restTemplate, String uri, HttpEntity request, 
+			Map<String, String> params) {
+		ResponseEntity<CubeData[]> responseEntity = restTemplate.exchange(uri, HttpMethod.GET,
+                request, CubeData[].class, params);
+		
+		CubeData[] cubeData;
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+        	cubeData = cubeServiceCacheUtil.cacheResult(true, responseEntity);
+		} else {
+			cubeData = cubeServiceCacheUtil.cacheResult(false, responseEntity);
+		}
+        etag = responseEntity.getHeaders().getETag();
+        
+        return cubeData;
 	}
 }

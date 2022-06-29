@@ -8,6 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
@@ -15,9 +18,11 @@ import org.springframework.web.util.UriComponentsBuilder;
 import org.supercsv.io.ICsvBeanWriter;
 
 import com.reservoir.datareservoir.client.config.auth.AuthorizationToken;
+import com.reservoir.datareservoir.client.domain.model.CubeData;
 import com.reservoir.datareservoir.client.domain.model.PropertiesFilter;
 import com.reservoir.datareservoir.client.domain.model.RocketData;
 import com.reservoir.datareservoir.client.domain.service.properties.UrlProperties;
+import com.reservoir.datareservoir.client.infrastructure.util.RocketServiceCacheUtil;
 
 @Component
 public class RocketDataServiceClient {
@@ -28,9 +33,14 @@ public class RocketDataServiceClient {
 	@Autowired
 	private UrlProperties urlProperties;
 	
+	@Autowired
+	private RocketServiceCacheUtil rocketServiceCacheUtil;
+	
+	private String etag = null;
+	private RocketData[] rocketData;
+	
     public RocketData[] getRocketData(PropertiesFilter propertiesFilter) {
         String accessToken = authorizationToken.getAccessToken(false);
-        RocketData[] rocketData;
         
         Map<String, String> params = new HashMap<>();
         params.put("fromTimeStamp", propertiesFilter.getFromTimeStamp());
@@ -40,24 +50,26 @@ public class RocketDataServiceClient {
                 .queryParam("fromTimeStamp", "{fromTimeStamp}")
                 .queryParam("toTimeStamp", "{toTimeStamp}")
                 .encode().toUriString();
+        
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        headers.setBearerAuth(accessToken);
+        headers.setETag(etag);
+        headers.setIfNoneMatch(etag);
+        
+        RestTemplate restTemplate = new RestTemplate();
+        ResponseEntity<RocketData[]> responseEntity = null;
+        
         try {
-            HttpHeaders headers = new HttpHeaders();
-            headers.setBearerAuth(accessToken);
-
             var request = new HttpEntity(headers);
-
-            rocketData = new RestTemplate().exchange(uri, HttpMethod.GET, 
-            		request, RocketData[].class, params).getBody();
+            rocketData = getBody(restTemplate, uri, request, params);
         } catch (HttpClientErrorException e) {
             accessToken = authorizationToken.getAccessToken(true);
-
-            HttpHeaders headers = new HttpHeaders();
             headers.setBearerAuth(accessToken);
 
             var request = new HttpEntity(headers);
 
-            rocketData = new RestTemplate().exchange(uri, HttpMethod.GET, 
-            		request, RocketData[].class, params).getBody();
+            rocketData = getBody(restTemplate, uri, request, params);
         }
 
         return rocketData;
@@ -86,5 +98,21 @@ public class RocketDataServiceClient {
 			csvBeanWriter.write(rocketData, fieldMapping);
 		}
 		
+	}
+	
+	private RocketData[] getBody (RestTemplate restTemplate, String uri, HttpEntity request, 
+			Map<String, String> params) {
+		ResponseEntity<RocketData[]> responseEntity = restTemplate.exchange(uri, HttpMethod.GET,
+                request, RocketData[].class, params);
+		
+		RocketData[] rocketData;
+        if (responseEntity.getStatusCode() == HttpStatus.OK) {
+        	rocketData = rocketServiceCacheUtil.cacheResult(true, responseEntity);
+		} else {
+			rocketData = rocketServiceCacheUtil.cacheResult(false, responseEntity);
+		}
+        etag = responseEntity.getHeaders().getETag();
+        
+        return rocketData;
 	}
 }

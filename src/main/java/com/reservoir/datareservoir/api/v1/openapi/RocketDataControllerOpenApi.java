@@ -9,6 +9,9 @@ import io.swagger.annotations.*;
 
 import java.util.List;
 
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.context.request.ServletWebRequest;
+
 @Api(tags = "Rocket")
 public interface RocketDataControllerOpenApi {
 
@@ -17,7 +20,7 @@ public interface RocketDataControllerOpenApi {
             @ApiResponse(code = 400, message = "Invalid request", response = Problem.class),
             @ApiResponse(code = 500, message = "Internal server error", response = Problem.class)
     })
-    List<RocketDataModel> getRocketData(PropertiesFilter propertiesFilter);
+    ResponseEntity<List<RocketDataModel>> getRocketData(PropertiesFilter propertiesFilter, ServletWebRequest request);
 
     @ApiOperation("Get a single rocket data")
     @ApiResponses({
